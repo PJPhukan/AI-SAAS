@@ -7,8 +7,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Download, ImageIcon } from "lucide-react";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
-import { cn } from "@/lib/utils";
 
 import Heading from "@/components/Heading";
 import { amountOptions, fromSchema, resolutionOption } from "./constants";
@@ -17,8 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
-import UserAvatar from "@/components/UserAvatar";
-import BotAvatar from "@/components/BotAvatar";
 import {
   Select,
   SelectContent,

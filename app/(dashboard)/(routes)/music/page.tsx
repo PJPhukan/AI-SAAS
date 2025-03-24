@@ -7,9 +7,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MusicIcon } from "lucide-react";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
-import { cn } from "@/lib/utils";
-
 import Heading from "@/components/Heading";
 import { fromSchema } from "./constants";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -17,10 +14,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
-import UserAvatar from "@/components/UserAvatar";
-import BotAvatar from "@/components/BotAvatar";
 
-const Music = () => {
+const MusicPage = () => {
   const router = useRouter();
   const [music, setMusic] = useState<string>();
   const form = useForm<z.infer<typeof fromSchema>>({
@@ -37,7 +32,6 @@ const Music = () => {
       setMusic(undefined);
 
       const response = await axios.post("/api/music", data);
-console.log("GENERATED MUSIC RESPONSE :",response)
 
       setMusic(response.data.audio);
       form.reset();
@@ -96,13 +90,11 @@ console.log("GENERATED MUSIC RESPONSE :",response)
               <Loader />
             </div>
           )}
-          {!music && !isLoading && (
-            <Empty label="No music generated." />
-          )}
+          {!music && !isLoading && <Empty label="No music generated." />}
 
           {music && (
             <audio controls className="w-full mt-8">
-              <source src={music}/>
+              <source src={music} />
             </audio>
           )}
         </div>
@@ -111,4 +103,4 @@ console.log("GENERATED MUSIC RESPONSE :",response)
   );
 };
 
-export default Music;
+export default MusicPage;
